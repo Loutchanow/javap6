@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "subject")
 @Getter
@@ -25,5 +27,6 @@ public class Subject {
     private List<Post> posts;
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Subscription> subscriptions;
 }
