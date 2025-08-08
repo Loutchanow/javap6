@@ -11,6 +11,6 @@ public class PostDTO {
     private String content;
     private LocalDateTime createdAt;
 
+    private String subject;
     private Long userId;
-    private Long subjectId;
 }

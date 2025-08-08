@@ -1,5 +1,7 @@
 package com.mddApi.service.mapper;
 
+import com.mddApi.dto.RegisterDTO;
+import com.mddApi.dto.UserResponseDTO;
 import com.mddApi.dto.UsersDTO;
 import com.mddApi.model.Users;
 import org.mapstruct.Mapper;
@@ -11,5 +13,9 @@ public interface UsersMapper {
     UsersDTO toDto(Users users);
 
     void copy(UsersDTO usersDTO, @MappingTarget Users users);
+    UsersDTO fromRegisterDto(RegisterDTO dto);
+    UserResponseDTO toResponseDto(Users user);
+
+    
 
 }

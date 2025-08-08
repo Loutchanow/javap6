@@ -9,4 +9,5 @@ import com.mddApi.model.Subscription;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
     List<Subscription> findAll();
+    List<Subscription> findByUserId(Long userId);
 }
