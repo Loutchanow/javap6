@@ -8,6 +8,6 @@ import com.mddApi.model.Post;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findAll();
-    Optional<Post> findByTitle(String string);
+//    List<Post> findAll();
+//    Optional<Post> findByTitle(String string);
 }

@@ -1,16 +1,14 @@
 package com.mddApi.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import java.time.LocalDateTime;
 
-
-@Getter
-@Setter
+@Data
 public class PostResponseDTO {
-	   private Long id;
-	    private String title;
-	    private String content;
-	    private String subject;
-	    private Long user;
-	    private String created_at;
+    private Long id;
+    private String title;
+    private String content;
+    private String subjectName;
+    private String userName;
+    private LocalDateTime createdAt;
 }

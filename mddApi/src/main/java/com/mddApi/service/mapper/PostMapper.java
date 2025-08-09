@@ -1,16 +1,19 @@
 package com.mddApi.service.mapper;
 
 import com.mddApi.dto.PostDTO;
+import com.mddApi.dto.PostResponseDTO;
 import com.mddApi.model.Post;
-
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.Mapping;
 
-@Mapper(componentModel="spring")
+@Mapper(componentModel = "spring")
 public interface PostMapper {
-    Post toEntity(PostDTO postDTO);
-    PostDTO toDto(Post post);
 
-    void copy(PostDTO postDTO, @MappingTarget Post post);
+    @Mapping(target = "subject", ignore = true)
+    @Mapping(target = "user", ignore = true)
+    Post toEntity(PostDTO dto);
 
+    @Mapping(target = "subjectName", source = "subject.name")
+    @Mapping(target = "userName", source = "user.name")
+    PostResponseDTO toResponseDto(Post post);
 }

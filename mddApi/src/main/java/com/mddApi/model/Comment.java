@@ -18,7 +18,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Users author;
+    private Users user;
 
     @ManyToOne
     @JoinColumn(name = "article_id", nullable = false)
@@ -28,5 +28,5 @@ public class Comment {
     private String content;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime subscribedAt = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
