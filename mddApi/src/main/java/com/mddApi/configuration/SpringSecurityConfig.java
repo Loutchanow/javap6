@@ -1,5 +1,7 @@
 package com.mddApi.configuration;
 
+import java.util.Optional;
+
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,8 @@ public class SpringSecurityConfig {
 
 	
     private static final String[] PUBLIC = {
-          "/auth/login",
-          "/auth/register",
+          "/api/auth/login",
+          "/api/auth/register",
           "/v3/api-docs/**",
           "/swagger-ui.html",
           "/swagger-ui/**" ,
@@ -73,14 +75,22 @@ public class SpringSecurityConfig {
 	@Bean
 	public UserDetailsService userDetailsService() {
 	    return username -> {
-	        Users user = userRepository.findByEmail(username)
-	            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	        Users user;
+	        if (username.contains("@")) {
+	            user = userRepository.findByEmail(username)
+	                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	        } else {
+	            user = userRepository.findByName(username)
+	                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	        }
+
 	        return User.withUsername(user.getEmail())
 	                .password(user.getPassword())
 	                .roles("USER")
 	                .build();
 	    };
 	}
+
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {

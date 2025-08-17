@@ -9,5 +9,8 @@ import com.mddApi.model.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 //    List<Post> findAll();
-//    Optional<Post> findByTitle(String string);
+    List<Post> findBySubjectIdIn(List<Long>SubjectId);
+	
 }
+
+// select * from post where subject.id in (1,2,3,4)

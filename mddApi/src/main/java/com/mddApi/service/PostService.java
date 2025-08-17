@@ -4,6 +4,7 @@ import com.mddApi.dto.PostDTO;
 import com.mddApi.dto.PostResponseDTO;
 import com.mddApi.model.Post;
 import com.mddApi.model.Subject;
+import com.mddApi.model.Subscription;
 import com.mddApi.model.Users;
 import com.mddApi.repository.PostRepository;
 import com.mddApi.repository.SubjectRepository;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -35,15 +37,17 @@ public class PostService {
     @Autowired
     private PostMapper postMapper;
 
-    public List<PostResponseDTO> getAllPost() {
-        List<Post> posts = postRepository.findAll();
-        List<PostResponseDTO> dtoList = new ArrayList<>();
+    public List<PostResponseDTO> getAllPost(Principal principal) {
+    	
+        Users user = usersRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        for (Post post : posts) {
-            dtoList.add(postMapper.toResponseDto(post));
-        }
-
-        return dtoList;
+        List<Long> sujects = user.getSubscriptions().stream().map(subscription->subscription.getSubject()
+        		.getId()
+        		).collect(Collectors.toList());
+        
+       List<Post> posts = postRepository.findBySubjectIdIn(sujects);
+       	return postMapper.toListPostResponseDTO(posts);
     }
 
 

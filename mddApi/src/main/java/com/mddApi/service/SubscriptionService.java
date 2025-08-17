@@ -1,7 +1,9 @@
 package com.mddApi.service;
 
 import com.mddApi.dto.SubscriptionDTO;
+import com.mddApi.model.Subject;
 import com.mddApi.model.Subscription;
+import com.mddApi.model.Users;
 import com.mddApi.repository.SubscriptionRepository;
 import com.mddApi.service.mapper.SubscriptionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,14 @@ public class SubscriptionService {
     private SubscriptionMapper subscriptionMapper;
 
     public SubscriptionDTO create(SubscriptionDTO subscriptionDTO) {
+//    	Users user = new Users();
+//    	user.setId(subscriptionDTO.getUserId());
+//    	Subject subject = new Subject();
+//    	subject.setId(subscriptionDTO.getSubjectId());
+    			
+    	
         Subscription subscription = subscriptionMapper.toEntity(subscriptionDTO);
+        
         Subscription saved = subscriptionRepository.save(subscription);
         return subscriptionMapper.toDto(saved);
     }

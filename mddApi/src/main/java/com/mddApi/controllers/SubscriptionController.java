@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/subscriptions")
+@RequestMapping("/api/subscriptions")
 public class SubscriptionController {
 
     @Autowired
@@ -16,6 +16,8 @@ public class SubscriptionController {
 
     @PostMapping
     public SubscriptionDTO create(@RequestBody SubscriptionDTO subscriptionDTO) {
+      	System.out.println("************************************subscriptionDTO");
+    	System.out.println(subscriptionDTO);
         return subscriptionService.create(subscriptionDTO);
     }
 

@@ -25,16 +25,19 @@ public class PostController {
 
 
 	    private final PostService postService;
+	    
+	    
 
 	    public PostController(PostService postService) {
 	        this.postService = postService ;
 	    }
 
 	    @GetMapping
-	    public ResponseEntity<Map<String, List<PostResponseDTO>>> getAllPost() {
-	        List<PostResponseDTO> post = postService.getAllPost();
-	        Map<String, List<PostResponseDTO>> response = new HashMap<>();
-	        return ResponseEntity.ok(response);
+	    public List<PostResponseDTO> getAllPost(Principal principal) {
+	        List<PostResponseDTO> post = postService.getAllPost(principal);
+	        
+//	        Map<String, List<PostResponseDTO>> response = new HashMap<>();
+	        return post;
 	    }
 
 	    @GetMapping("/{id}")

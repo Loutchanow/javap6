@@ -26,7 +26,7 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Subscription> subscriptions;
+//    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<Subscription> subscriptions;
 }

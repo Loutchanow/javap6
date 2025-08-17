@@ -3,6 +3,9 @@ package com.mddApi.service.mapper;
 import com.mddApi.dto.PostDTO;
 import com.mddApi.dto.PostResponseDTO;
 import com.mddApi.model.Post;
+
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -16,4 +19,6 @@ public interface PostMapper {
     @Mapping(target = "subjectName", source = "subject.name")
     @Mapping(target = "userName", source = "user.name")
     PostResponseDTO toResponseDto(Post post);
+
+    List<PostResponseDTO> toListPostResponseDTO(List<Post> posts);
 }
