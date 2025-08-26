@@ -15,8 +15,6 @@ public class UsersDTO {
     private String email;
     @JsonIgnore
     private String password;
-
-
     @JsonFormat(pattern = "yyyy/MM/dd")
     private LocalDateTime created_at;
     

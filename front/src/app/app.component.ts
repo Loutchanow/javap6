@@ -8,14 +8,14 @@ import { SessionService } from './services/session.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private sessionService: SessionService) {
-  }
+    public router: Router,
+    private sessionService: SessionService
+  ) {}
 
   public ngOnInit(): void {
     this.autoLog();
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   public logout(): void {
     this.sessionService.logOut();
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 
   public autoLog(): void {
@@ -38,6 +38,11 @@ export class AppComponent implements OnInit {
       (_) => {
         this.sessionService.logOut();
       }
-    )
+    );
+  }
+  public isAuthPage(): boolean {
+    return (
+      this.router.url.includes('login') || this.router.url.includes('register')
+    );
   }
 }

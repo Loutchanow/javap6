@@ -1,5 +1,7 @@
 package com.mddApi.controllers;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,9 +45,9 @@ public class AuthController {
 	public TokenResponseDTO register(@RequestBody RegisterDTO registerDTO) {
 	    String rawPassword = registerDTO.getPassword();
 	    String encoded = passwordEncoder.encode(rawPassword);
-
 	    UsersDTO userDTO = usersMapper.fromRegisterDto(registerDTO);
-	    userDTO.setPassword(encoded); 
+	    userDTO.setPassword(encoded);
+	    userDTO.setCreated_at(LocalDateTime.now());
 
 	    usersService.save(userDTO);
 

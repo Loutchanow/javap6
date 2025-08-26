@@ -1,43 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/interfaces/user.interface';
-import { SessionService } from 'src/app/services/session.service';
 import { AuthSuccess } from '../../interfaces/authSuccess.interface';
-import { LoginRequest } from '../../interfaces/loginRequest.interface'; 
+import { LoginRequest } from '../../interfaces/loginRequest.interface';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  {
+export class LoginComponent {
   public hide = true;
   public onError = false;
 
   public form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.min(3)]]
+    email: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
-  constructor(private authService: AuthService, 
-    private fb: FormBuilder, 
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
     private router: Router,
-    private sessionService: SessionService) { }
+    private location: Location
+  ) {}
 
   public submit(): void {
     const loginRequest = this.form.value as LoginRequest;
     this.authService.login(loginRequest).subscribe(
       (response: AuthSuccess) => {
         localStorage.setItem('token', response.token);
-        this.authService.me().subscribe((user: User) => {
-          this.sessionService.logIn(user);
-          this.router.navigate(['/rentals'])
-        });
-        this.router.navigate(['/rentals'])
+        this.router.navigate(['/posts']);
       },
-      error => this.onError = true
+      () => (this.onError = true)
     );
+  }
+
+  public goBack(): void {
+    this.location.back();
   }
 }

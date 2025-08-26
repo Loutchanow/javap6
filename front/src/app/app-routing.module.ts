@@ -7,26 +7,28 @@ import { UnauthGuard } from './guards/unauth.guard';
 
 const routes: Routes = [
   {
-    path: 'rentals',
+    path: 'posts',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./features/rentals/rentals.module').then(m => m.RentalsModule)
+    loadChildren: () =>
+      import('./features/rentals/rentals.module').then((m) => m.RentalsModule),
   },
   {
     path: '',
     canActivate: [UnauthGuard],
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'me',
-    canActivate: [AuthGuard], 
-    component: MeComponent
+    canActivate: [AuthGuard],
+    component: MeComponent,
   },
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '404' }
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
