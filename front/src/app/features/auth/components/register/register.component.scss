@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 50vh;
   flex-direction: column;
 }
 
@@ -10,8 +10,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
-  max-width: 400px;
 }
 
 .form-group {
@@ -24,36 +22,4 @@ label {
   font-size: 0.9rem;
   font-weight: 500;
   color: #333;
-}
-
-input {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  background: #7763c5;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.error {
-  color: red;
-  margin-top: 1rem;
-  text-align: center;
 }

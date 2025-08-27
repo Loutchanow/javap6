@@ -24,3 +24,46 @@ h1 {
   cursor: pointer;
   user-select: none;
 }
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+    width: 250px;
+    max-width: 70%;
+    margin: 2rem auto 0rem auto;
+  }
+}
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #7763c5;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  background: #2c3e9d;
+}
+input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+.error {
+  color: red;
+  margin-top: 1rem;
+  text-align: center;
+}

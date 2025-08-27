@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './features/auth/services/auth.service';
@@ -40,6 +40,31 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  public innerWidth = window.innerWidth;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+  }
+
+  get showToolbar(): boolean {
+    const url = this.router.url;
+
+    if (url === '/') {
+      return false;
+    }
+
+    if (
+      this.innerWidth <= 768 &&
+      (url.includes('/login') || url.includes('/register'))
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
   public isAuthPage(): boolean {
     return (
       this.router.url.includes('login') || this.router.url.includes('register')
