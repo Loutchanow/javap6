@@ -16,10 +16,13 @@ h1 {
 .error {
   color: red;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .back-arrow {
-  position: absolute;
-  top: 80px;
-  left: 20px;
+  margin: 2rem;
   font-size: 2rem;
   cursor: pointer;
   user-select: none;
@@ -33,7 +36,7 @@ h1 {
     display: block;
     width: 250px;
     max-width: 70%;
-    margin: 2rem auto 0rem auto;
+    margin: auto;
   }
 }
 .btn {
