@@ -1,1 +1,13 @@
-<p>posts works!</p>
+<div class="posts-container">
+  <div class="post-card" *ngFor="let post of posts">
+    <h2 class="title">{{ post.title }}</h2>
+    <div class="info">
+      <p class="meta">Publié le {{ post.createdAt | date : "short" }}</p>
+      <p>
+        par
+        {{ post.userName }}
+      </p>
+    </div>
+    <p class="content">{{ post.content }}</p>
+  </div>
+</div>
