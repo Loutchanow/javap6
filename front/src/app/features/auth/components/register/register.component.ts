@@ -3,8 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RegisterRequest } from '../../interfaces/registerRequest.interface';
-import { AuthSuccess } from '../../interfaces/authSuccess.interface';
 import { Location } from '@angular/common';
+import { SessionService } from 'src/app/services/session.service';
+import { User } from 'src/app/interfaces/user.interface';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -23,18 +24,31 @@ export class RegisterComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private sessionService: SessionService
   ) {}
 
   public submit(): void {
     const registerRequest = this.form.value as RegisterRequest;
-    this.authService.register(registerRequest).subscribe(
-      (response: AuthSuccess) => {
+
+    this.authService.register(registerRequest).subscribe({
+      next: (response) => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/api/posts']);
+        this.authService.me().subscribe({
+          next: (user: User) => {
+            this.sessionService.logIn(user);
+
+            this.router.navigate(['/posts']);
+          },
+          error: () => {
+            this.onError = true;
+          },
+        });
       },
-      (error) => (this.onError = true)
-    );
+      error: () => {
+        this.onError = true;
+      },
+    });
   }
 
   public goBack(): void {

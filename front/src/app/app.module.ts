@@ -13,33 +13,28 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MeComponent } from './components/me/me.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HomeComponent } from './components/home/home/home.component';
+import { PostsComponent } from './features/posts/posts.component';
 
 const materialModule = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatToolbarModule,
-]
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-    MeComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent, MeComponent, PostsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    ...materialModule
+    ...materialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

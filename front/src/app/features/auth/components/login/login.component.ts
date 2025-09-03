@@ -5,6 +5,8 @@ import { AuthSuccess } from '../../interfaces/authSuccess.interface';
 import { LoginRequest } from '../../interfaces/loginRequest.interface';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { SessionService } from 'src/app/services/session.service';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,8 @@ export class LoginComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private sessionService: SessionService
   ) {}
 
   public submit(): void {
@@ -32,7 +35,15 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe(
       (response: AuthSuccess) => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/posts']);
+        this.authService.me().subscribe({
+          next: (user: User) => {
+            this.sessionService.logIn(user);
+            this.router.navigate(['/posts']);
+          },
+          error: () => {
+            this.onError = true;
+          },
+        });
       },
       () => (this.onError = true)
     );
