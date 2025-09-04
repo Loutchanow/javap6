@@ -10,6 +10,7 @@ import { Post } from 'src/app/interfaces/post.interface';
 })
 export class PostsComponent implements OnInit {
   posts: Post[] = [];
+  isAsc = false;
 
   constructor(private postService: PostService) {}
 
@@ -17,6 +18,14 @@ export class PostsComponent implements OnInit {
     this.postService.getAll().subscribe({
       next: (data) => (this.posts = data),
       error: (err) => console.error('Erreur chargement posts', err),
+    });
+  }
+  toggleSort(): void {
+    this.isAsc = !this.isAsc;
+    this.posts = [...this.posts].sort((a, b) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return this.isAsc ? dateA - dateB : dateB - dateA;
     });
   }
 }
