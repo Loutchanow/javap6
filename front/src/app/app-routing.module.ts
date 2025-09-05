@@ -5,9 +5,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
 import { PostsComponent } from './features/posts/posts.component';
+import { CreatePostComponent } from './features/create-post/create-post.component';
 
 const routes: Routes = [
-  { path: 'posts', canActivate: [AuthGuard], component: PostsComponent },
+  {
+    path: 'posts',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: PostsComponent },
+      { path: 'create', component: CreatePostComponent },
+    ],
+  },
   {
     path: '',
     canActivate: [UnauthGuard],

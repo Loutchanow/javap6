@@ -1,5 +1,7 @@
 <div class="posts-header">
-  <button class="create-btn">Créer un article</button>
+  <button class="create-btn" [routerLink]="['/posts/create']">
+    Créer un article
+  </button>
 
   <div class="sort">
     <div (click)="toggleSort()" class="sort-toggle">

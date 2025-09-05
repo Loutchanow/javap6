@@ -14,6 +14,9 @@ import { MeComponent } from './components/me/me.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PostsComponent } from './features/posts/posts.component';
+import { CreatePostComponent } from './features/create-post/create-post.component';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const materialModule = [
   MatButtonModule,
@@ -23,13 +26,23 @@ const materialModule = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, MeComponent, PostsComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    MeComponent,
+    PostsComponent,
+    CreatePostComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
+
+    ReactiveFormsModule,
+    FormsModule,
+
     ...materialModule,
   ],
   providers: [

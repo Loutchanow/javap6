@@ -41,7 +41,7 @@ public class PostController {
 	    }
 
 	    @GetMapping("/{id}")
-	    public ResponseEntity<PostResponseDTO> getRental(@PathVariable Long id) {
+	    public ResponseEntity<PostResponseDTO> getPost(@PathVariable Long id) {
 	        return postService.getPostByIdDTO(id)
 	                .map(dto -> ResponseEntity.ok(dto))
 	                .orElse(ResponseEntity.notFound().build());

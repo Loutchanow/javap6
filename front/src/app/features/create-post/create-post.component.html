@@ -1,0 +1,27 @@
+<div class="back-arrow" (click)="goBack()">←</div>
+<div class="create-post-container">
+  <h2>Créer un nouvel article</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <select formControlName="subject" class="form-field">
+      <option value="" disabled selected>Sélectionner un thème</option>
+      <option *ngFor="let s of subjects" [value]="s.name">{{ s.name }}</option>
+    </select>
+
+    <input
+      type="text"
+      formControlName="title"
+      class="form-field"
+      placeholder="Titre de l’article"
+    />
+
+    <textarea
+      formControlName="content"
+      class="form-field"
+      placeholder="Contenu"
+      rows="6"
+    ></textarea>
+
+    <button type="submit" class="btn" [disabled]="form.invalid">Créer</button>
+  </form>
+</div>
