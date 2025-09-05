@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.mddApi.dto.PostDTO;
 import com.mddApi.dto.PostResponseDTO;
-import com.mddApi.service.PostService;
+import com.mddApi.service.interfaces.PostService;
 
 
 @RestController

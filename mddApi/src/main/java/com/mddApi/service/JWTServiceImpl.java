@@ -10,15 +10,18 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
+import com.mddApi.service.interfaces.JWTService;
+
 @Service
-public class JWTService {
+public class JWTServiceImpl implements JWTService {
 
 	private JwtEncoder jwtEncoder;
 	
-	public JWTService(JwtEncoder jwtEncoder) {
+	public JWTServiceImpl(JwtEncoder jwtEncoder) {
 		this.jwtEncoder = jwtEncoder;
 	}
 	
+	@Override
 	public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()

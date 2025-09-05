@@ -4,11 +4,11 @@ import com.mddApi.dto.PostDTO;
 import com.mddApi.dto.PostResponseDTO;
 import com.mddApi.model.Post;
 import com.mddApi.model.Subject;
-import com.mddApi.model.Subscription;
 import com.mddApi.model.Users;
 import com.mddApi.repository.PostRepository;
 import com.mddApi.repository.SubjectRepository;
 import com.mddApi.repository.UsersRepository;
+import com.mddApi.service.interfaces.PostService;
 import com.mddApi.service.mapper.PostMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,13 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class PostService {
+public class PostServiceImpl implements PostService{
 
     @Autowired
     private PostRepository postRepository;
@@ -36,7 +35,8 @@ public class PostService {
 
     @Autowired
     private PostMapper postMapper;
-
+    
+    @Override
     public List<PostResponseDTO> getAllPost(Principal principal) {
     	
         Users user = usersRepository.findByEmail(principal.getName())
@@ -50,7 +50,7 @@ public class PostService {
        	return postMapper.toListPostResponseDTO(posts);
     }
 
-
+    @Override
     public Optional<PostResponseDTO> getPostByIdDTO(Long id) {
         Optional<Post> postOpt = postRepository.findById(id);
         if (postOpt.isPresent()) {
@@ -60,7 +60,7 @@ public class PostService {
     }
 
     
-
+    @Override
     public Map<String, String> createPost(Principal principal, PostDTO postDTO) {
 
         Users user = usersRepository.findByEmail(principal.getName())
@@ -80,7 +80,8 @@ public class PostService {
 
         return Map.of("message", "Post created successfully");
     }
-
+    
+    @Override
     public void updatePost(Long id, PostDTO dto) {
         Post existing = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found"));

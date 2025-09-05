@@ -1,7 +1,7 @@
 package com.mddApi.controllers;
 
 import com.mddApi.dto.SubscriptionDTO;
-import com.mddApi.service.SubscriptionService;
+import com.mddApi.service.interfaces.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +16,6 @@ public class SubscriptionController {
 
     @PostMapping
     public SubscriptionDTO create(@RequestBody SubscriptionDTO subscriptionDTO) {
-      	System.out.println("************************************subscriptionDTO");
-    	System.out.println(subscriptionDTO);
         return subscriptionService.create(subscriptionDTO);
     }
 

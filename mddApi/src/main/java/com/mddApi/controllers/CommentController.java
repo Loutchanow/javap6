@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import com.mddApi.dto.CommentDTO;
-import com.mddApi.service.CommentService;
+import com.mddApi.service.interfaces.CommentService;
 
 import java.util.HashMap;
 import java.util.Map;

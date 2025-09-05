@@ -1,8 +1,10 @@
+
 package com.mddApi.service;
 
 import com.mddApi.dto.SubjectDTO;
 import com.mddApi.model.Subject;
 import com.mddApi.repository.SubjectRepository;
+import com.mddApi.service.interfaces.SubjectService;
 import com.mddApi.service.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class SubjectService {
+public class SubjectServiceImpl implements SubjectService{
 
     @Autowired
     private SubjectRepository subjectRepository;
@@ -26,17 +28,20 @@ public class SubjectService {
                 .map(subjectMapper::toDto)
                 .collect(Collectors.toList());
     }
-
+    
+    @Override
     public Optional<SubjectDTO> getSubjectById(Long id) {
         return subjectRepository.findById(id)
                 .map(subjectMapper::toDto);
     }
 
+    @Override
     public SubjectDTO createSubject(SubjectDTO dto) {
         Subject subject = subjectMapper.toEntity(dto);
         return subjectMapper.toDto(subjectRepository.save(subject));
     }
-
+    
+    @Override
     public Optional<SubjectDTO> updateSubject(Long id, SubjectDTO dto) {
         return subjectRepository.findById(id)
                 .map(existing -> {
@@ -46,6 +51,7 @@ public class SubjectService {
                 });
     }
 
+    @Override
     public boolean deleteSubject(Long id) {
         if (subjectRepository.existsById(id)) {
             subjectRepository.deleteById(id);

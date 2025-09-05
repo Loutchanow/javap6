@@ -7,6 +7,7 @@ import com.mddApi.model.Users;
 import com.mddApi.repository.CommentRepository;
 import com.mddApi.repository.PostRepository;
 import com.mddApi.repository.UsersRepository;
+import com.mddApi.service.interfaces.CommentService;
 import com.mddApi.service.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Service
-public class CommentService {
+public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentRepository commentRepository;
@@ -29,6 +30,7 @@ public class CommentService {
     @Autowired
     private CommentMapper commentMapper;
 
+    @Override
     public void createComment(CommentDTO dto, Principal principal) {
         Users user = usersRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));

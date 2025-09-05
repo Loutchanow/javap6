@@ -1,7 +1,7 @@
 package com.mddApi.controllers;
 
 import com.mddApi.dto.SubjectDTO;
-import com.mddApi.service.SubjectService;
+import com.mddApi.service.interfaces.SubjectService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

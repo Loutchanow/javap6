@@ -16,8 +16,8 @@ import com.mddApi.dto.LoginRequestDTO;
 import com.mddApi.dto.RegisterDTO;
 import com.mddApi.dto.TokenResponseDTO;
 import com.mddApi.dto.UsersDTO;
-import com.mddApi.service.JWTService;
-import com.mddApi.service.UsersService;
+import com.mddApi.service.interfaces.JWTService;
+import com.mddApi.service.interfaces.UsersService;
 import com.mddApi.service.mapper.UsersMapper;
 
 

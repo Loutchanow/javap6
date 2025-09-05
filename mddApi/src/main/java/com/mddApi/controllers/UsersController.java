@@ -12,7 +12,7 @@ import com.mddApi.dto.UserResponseDTO;
 import com.mddApi.dto.UsersDTO;
 import com.mddApi.model.Users;
 import com.mddApi.repository.UsersRepository;
-import com.mddApi.service.UsersService;
+import com.mddApi.service.interfaces.UsersService;
 import com.mddApi.service.mapper.UsersMapper;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
