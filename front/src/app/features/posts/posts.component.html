@@ -3,7 +3,7 @@
     Créer un article
   </button>
 
-  <div class="sort">
+  <div class="sort" *ngIf="posts.length > 0">
     <div (click)="toggleSort()" class="sort-toggle">
       <span>Trier par date</span>
       <span class="arrow">{{ isAsc ? "↑" : "↓" }}</span>
