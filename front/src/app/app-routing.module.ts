@@ -8,6 +8,7 @@ import { PostsComponent } from './features/posts/posts.component';
 import { CreatePostComponent } from './features/create-post/create-post.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { ThemeComponent } from './features/theme/theme.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'posts', component: PostsComponent },
       { path: 'posts/create', component: CreatePostComponent },
       { path: 'me', component: MeComponent },
+      { path: 'themes', component: ThemeComponent },
     ],
   },
   { path: '404', component: NotFoundComponent },

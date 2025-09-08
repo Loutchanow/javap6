@@ -1,0 +1,25 @@
+<div class="cards-container">
+  <div class="card" *ngFor="let theme of themes">
+    <h2 class="title">{{ theme.name }}</h2>
+    <p class="description">{{ theme.description }}</p>
+    <div class="btn-container">
+      <button
+        mat-raised-button
+        class="btn btn-small"
+        *ngIf="!isSubscribed(theme.id)"
+        (click)="subscribe(theme.id)"
+      >
+        S’abonner
+      </button>
+
+      <button
+        mat-raised-button
+        disabled
+        *ngIf="isSubscribed(theme.id)"
+        class="btn btn-small"
+      >
+        Déjà abonné
+      </button>
+    </div>
+  </div>
+</div>

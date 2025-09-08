@@ -11,8 +11,8 @@
   </div>
 </div>
 
-<div class="posts-container">
-  <div class="post-card" *ngFor="let post of posts">
+<div class="cards-container">
+  <div class="card" *ngFor="let post of posts">
     <h2 class="title">{{ post.title }}</h2>
     <div class="info">
       <p class="meta">Publié le {{ post.createdAt | date : "short" }}</p>
