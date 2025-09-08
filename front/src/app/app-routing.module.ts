@@ -6,26 +6,26 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
 import { PostsComponent } from './features/posts/posts.component';
 import { CreatePostComponent } from './features/create-post/create-post.component';
+import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 const routes: Routes = [
   {
-    path: 'posts',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: PostsComponent },
-      { path: 'create', component: CreatePostComponent },
-    ],
-  },
-  {
     path: '',
+    component: AuthLayoutComponent,
     canActivate: [UnauthGuard],
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'me',
+    path: '',
+    component: AppLayoutComponent,
     canActivate: [AuthGuard],
-    component: MeComponent,
+    children: [
+      { path: 'posts', component: PostsComponent },
+      { path: 'posts/create', component: CreatePostComponent },
+      { path: 'me', component: MeComponent },
+    ],
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },

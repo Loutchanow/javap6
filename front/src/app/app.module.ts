@@ -17,6 +17,8 @@ import { PostsComponent } from './features/posts/posts.component';
 import { CreatePostComponent } from './features/create-post/create-post.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 
 const materialModule = [
   MatButtonModule,
@@ -32,6 +34,8 @@ const materialModule = [
     MeComponent,
     PostsComponent,
     CreatePostComponent,
+    AuthLayoutComponent,
+    AppLayoutComponent,
   ],
   imports: [
     BrowserModule,

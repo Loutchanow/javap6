@@ -1,0 +1,36 @@
+.logged-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.routes {
+  display: flex;
+  gap: 1rem;
+}
+.logout-btn {
+  color: red;
+  font-size: 11px;
+}
+.active-link {
+  color: #6c5ccf;
+}
+.profile-btn {
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  font-weight: lighter;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+
+.profile-btn mat-icon {
+  color: black;
+}
+.profile-btn.active-icon {
+  border-color: #6c5ccf;
+}
+.profile-btn.active-icon mat-icon {
+  color: #6c5ccf;
+}

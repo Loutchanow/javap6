@@ -1,0 +1,37 @@
+<mat-toolbar class="custom-toolbar logged-toolbar">
+  <img src="assets/logo_p6.png" alt="logo" />
+
+  <div class="routes">
+    <button mat-button class="logout-btn" (click)="logout()">
+      Se déconnecter
+    </button>
+    <button
+      mat-button
+      routerLink="/posts"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Articles
+    </button>
+
+    <button
+      mat-button
+      routerLink="/themes"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Thèmes
+    </button>
+    <button
+      mat-icon-button
+      class="profile-btn"
+      routerLink="/me"
+      routerLinkActive="active-icon"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon>person_outline</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
