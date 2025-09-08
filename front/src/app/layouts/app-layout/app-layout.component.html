@@ -1,7 +1,8 @@
 <mat-toolbar class="custom-toolbar logged-toolbar">
   <img src="assets/logo_p6.png" alt="logo" />
 
-  <div class="routes">
+  <!-- Desktop links -->
+  <div class="routes desktop-links" *ngIf="innerWidth > 768">
     <button mat-button class="logout-btn" (click)="logout()">
       Se déconnecter
     </button>
@@ -13,7 +14,6 @@
     >
       Articles
     </button>
-
     <button
       mat-button
       routerLink="/themes"
@@ -32,6 +32,55 @@
       <mat-icon>person_outline</mat-icon>
     </button>
   </div>
+  <button
+    mat-icon-button
+    class="burger"
+    *ngIf="innerWidth <= 768"
+    (click)="toggleMenu()"
+  >
+    <mat-icon>{{ menuOpen ? "close" : "menu" }}</mat-icon>
+  </button>
 </mat-toolbar>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" [class.open]="menuOpen">
+  <button
+    mat-button
+    class="logout-btn mobile-link"
+    (click)="logout(); toggleMenu()"
+  >
+    Se déconnecter
+  </button>
+  <button
+    mat-button
+    class="mobile-link"
+    routerLink="/posts"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="toggleMenu()"
+  >
+    Articles
+  </button>
+  <button
+    mat-button
+    class="mobile-link"
+    routerLink="/themes"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="toggleMenu()"
+  >
+    Thèmes
+  </button>
+  <button
+    mat-icon-button
+    class="profile-btn mobile"
+    routerLink="/me"
+    routerLinkActive="active-icon"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="toggleMenu()"
+  >
+    <mat-icon>person_outline</mat-icon>
+  </button>
+</div>
 
 <router-outlet></router-outlet>
