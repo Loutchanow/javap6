@@ -34,4 +34,10 @@ export class AuthService {
       headers: { Authorization: `Bearer ${token}` },
     });
   }
+  public updateMe(user: User): Observable<User> {
+    const token = localStorage.getItem('token');
+    return this.httpClient.put<User>(`/api/user/me`, user, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
 }

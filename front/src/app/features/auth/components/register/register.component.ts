@@ -18,6 +18,16 @@ export class RegisterComponent {
     email: ['', [Validators.required, Validators.email]],
     name: ['', [Validators.required, Validators.min(3)]],
     password: ['', [Validators.required, Validators.min(3)]],
+    // password: [
+    //   '',
+    //   [
+    //     Validators.required,
+    //     Validators.minLength(8),
+    //     Validators.pattern(
+    //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/
+    //     ),
+    //   ],
+    // ],
   });
 
   constructor(

@@ -1,22 +1,45 @@
 <div class="me">
-    <mat-card class="">
-        <mat-card-title>
+  <mat-card>
+    <mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-icon-button (click)="back()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Modifier mon profil</h1>
+      </div>
+    </mat-card-title>
 
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <button mat-icon-button (click)="back()">
-                    <mat-icon>arrow_back</mat-icon>
-                </button>
-                <h1>User information</h1>
-            </div>
-            
-        </mat-card-title>
-        <mat-card-content>
-            <div *ngIf="user" fxLayout="column" fxLayoutAlign="start center">
-                <p>Name: {{ user.name }}</p>
-                <p>Email: {{ user.email }}</p>
-                <p><i>Create at: </i> {{ user.created_at| date: 'longDate'}}</p>
-                <p><i>Last update: </i> {{ user.updated_at| date: 'longDate'}}</p>
-            </div>
-        </mat-card-content>
-    </mat-card>
+    <mat-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="updateUser()"
+        fxLayout="column"
+        fxLayoutGap="1rem"
+      >
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nouveau mot de passe</mat-label>
+          <input matInput formControlName="password" type="password" />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          Sauvegarder
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
