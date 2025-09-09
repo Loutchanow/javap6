@@ -1,0 +1,55 @@
+.me-container {
+  min-height: calc(60vh - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cards {
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  overflow: hidden;
+  h1,
+  h2 {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field {
+  padding: 10px 12px;
+  border: 2px solid #7e57c2;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+
+.form-field:focus {
+  border-color: #6c5ccf;
+}
+.cards-container {
+  background-color: #6c5ccf;
+}
+@media (max-width: 480px) {
+  .card {
+    max-width: 95%;
+  }
+  .btn {
+    width: 100%;
+  }
+}

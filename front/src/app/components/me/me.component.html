@@ -1,45 +1,56 @@
-<div class="me">
-  <mat-card>
-    <mat-card-title>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <button mat-icon-button (click)="back()">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-        <h1>Modifier mon profil</h1>
-      </div>
-    </mat-card-title>
+<div class="me-container">
+  <div class="cards">
+    <h1>Profil utilisateur</h1>
 
-    <mat-card-content>
-      <form
-        [formGroup]="form"
-        (ngSubmit)="updateUser()"
-        fxLayout="column"
-        fxLayoutGap="1rem"
-      >
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Nom</mat-label>
-          <input matInput formControlName="name" />
-        </mat-form-field>
+    <div class="card-content">
+      <form [formGroup]="form" (ngSubmit)="updateUser()" class="form">
+        <label class="form-group">
+          <span class="label">Nom</span>
+          <input type="text" formControlName="name" class="form-field" />
+        </label>
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="email" />
-        </mat-form-field>
+        <label class="form-group">
+          <span class="label">Email</span>
+          <input type="email" formControlName="email" class="form-field" />
+        </label>
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Nouveau mot de passe</mat-label>
-          <input matInput formControlName="password" type="password" />
-        </mat-form-field>
+        <label class="form-group">
+          <span class="label">Nouveau mot de passe</span>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-field"
+          />
+        </label>
 
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="form.invalid"
-        >
-          Sauvegarder
-        </button>
+        <div class="btn-container">
+          <button type="submit" class="btn btn-small" [disabled]="form.invalid">
+            Sauvegarder
+          </button>
+        </div>
       </form>
-    </mat-card-content>
-  </mat-card>
+
+      <hr class="separator" />
+
+      <div class="themes-section">
+        <h2>Mes abonnements</h2>
+
+        <div class="cards-container">
+          <div class="card" *ngFor="let theme of subscribedThemes">
+            <h3 class="title">{{ theme.name }}</h3>
+            <p class="description">{{ theme.description }}</p>
+            <div class="btn-container">
+              <button
+                mat-raised-button
+                class="btn btn-small"
+                (click)="unsubscribe(theme.id)"
+              >
+                Se désabonner
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
