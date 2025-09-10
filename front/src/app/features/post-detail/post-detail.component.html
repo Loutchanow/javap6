@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="back-arrow" (click)="goBack()">←</div>
+  <div class="post-detail">
+    <div *ngIf="post" class="post-detail">
+      <h1>{{ post.title }}</h1>
+      <p class="meta">
+        Publié le {{ post.createdAt | date : "short" }} par
+        {{ post.userName }} thème: {{ post.subjectName }}
+      </p>
+      <p class="content">{{ post.content }}</p>
+    </div>
+  </div>
+  <hr class="separator" />
+
+  <div class="comment-section">
+    <h2>Commentaires</h2>
+
+    <div *ngFor="let comment of comments" class="comments-container">
+      <div class="comment-author">{{ comment.userName }}</div>
+      <div class="card">{{ comment.content }}</div>
+    </div>
+
+    <div class="comment-input">
+      <input
+        type="text"
+        placeholder="Écrivez ici votre commentaire"
+        [(ngModel)]="newComment"
+      />
+      <button class="send-btn" (click)="sendComment()">➤</button>
+    </div>
+  </div>
+</div>

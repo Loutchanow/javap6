@@ -22,6 +22,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { ThemeComponent } from './features/theme/theme.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PostDetailComponent } from './features/post-detail/post-detail.component';
 
 const materialModule = [
   MatButtonModule,
@@ -41,6 +42,7 @@ const materialModule = [
     AuthLayoutComponent,
     AppLayoutComponent,
     ThemeComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

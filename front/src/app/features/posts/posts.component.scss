@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
 }
+.posts-list .card {
+  cursor: pointer;
+}
 
 .posts-header {
   display: flex;

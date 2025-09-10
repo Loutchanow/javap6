@@ -37,4 +37,7 @@ export class PostService {
   public getAllSubjects(): Observable<Subject[]> {
     return this.http.get<Subject[]>(this.subjectsUrl);
   }
+  public getById(id: number): Observable<Post> {
+    return this.http.get<Post>(`${this.baseUrl}/${id}`);
+  }
 }

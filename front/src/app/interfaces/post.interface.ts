@@ -4,4 +4,5 @@ export interface Post {
   content: string;
   createdAt: string;
   userName: string;
+  subjectName?: String;
 }
