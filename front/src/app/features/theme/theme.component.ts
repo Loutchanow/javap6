@@ -15,7 +15,7 @@ import { SessionService } from 'src/app/services/session.service';
 export class ThemeComponent implements OnInit {
   themes: Theme[] = [];
   userId!: number;
-  userSubscriptions: number[] = []; // liste des subjectId abonnés
+  userSubscriptions: number[] = [];
 
   constructor(
     private themeService: ThemeService,
@@ -24,7 +24,6 @@ export class ThemeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récup utilisateur courant
     this.userId = this.sessionService.user?.id ?? 0;
 
     // Charger les thèmes
@@ -33,7 +32,6 @@ export class ThemeComponent implements OnInit {
       error: (err) => console.error('Erreur chargement thèmes', err),
     });
 
-    // Charger les abonnements utilisateur
     if (this.userId) {
       this.subscriptionService.getByUser(this.userId).subscribe({
         next: (subs) => (this.userSubscriptions = subs.map((s) => s.subjectId)),
