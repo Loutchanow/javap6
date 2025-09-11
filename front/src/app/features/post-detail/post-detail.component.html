@@ -1,12 +1,13 @@
 <div class="container">
   <div class="back-arrow" (click)="goBack()">←</div>
-  <div class="post-detail">
+  <div class="post-container">
     <div *ngIf="post" class="post-detail">
       <h1>{{ post.title }}</h1>
-      <p class="meta">
-        Publié le {{ post.createdAt | date : "short" }} par
-        {{ post.userName }} thème: {{ post.subjectName }}
-      </p>
+      <div class="author">
+        <p class="meta">Publié le {{ post.createdAt | date : "short" }}</p>
+        <p class="meta">par {{ post.userName }}</p>
+        <p class="meta">thème: {{ post.subjectName }}</p>
+      </div>
       <p class="content">{{ post.content }}</p>
     </div>
   </div>
@@ -26,7 +27,9 @@
         placeholder="Écrivez ici votre commentaire"
         [(ngModel)]="newComment"
       />
-      <button class="send-btn" (click)="sendComment()">➤</button>
+      <button class="send-btn" (click)="sendComment()">
+        <i class="fa-regular fa-paper-plane"></i>
+      </button>
     </div>
   </div>
 </div>

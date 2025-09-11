@@ -10,5 +10,6 @@ import com.mddApi.model.Comment;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAll();
+    List<Comment> findByPostIdOrderByCreatedAtAsc(Long postId);
 //    List<Comment> findByArticleId(Long articleId);
 }

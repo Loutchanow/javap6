@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -29,6 +30,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
+    
+    @Override
+    public List<CommentDTO> getCommentsByPost(Long postId) {
+        List<Comment> comments = commentRepository.findByPostIdOrderByCreatedAtAsc(postId);
+        return comments.stream()
+                       .map(commentMapper::toDto)
+                       .toList();
+    }
 
     @Override
     public void createComment(CommentDTO dto, Principal principal) {

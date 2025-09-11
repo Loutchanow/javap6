@@ -22,6 +22,12 @@ public class CommentController {
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
+    
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<?> getByPost(@PathVariable Long postId) {
+        return ResponseEntity.ok(commentService.getCommentsByPost(postId));
+    }
+
 
     @PostMapping
     public ResponseEntity<?> create(
